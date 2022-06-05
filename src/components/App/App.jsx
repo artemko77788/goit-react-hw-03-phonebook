@@ -47,13 +47,14 @@ class App extends Component {
   };
 
   render() {
+    const data = this.filterByName();
     return (
       <div className={s.app}>
         <h1 className={s.text}>Phonebook</h1>
         <ContactForm submit={this.formSubmitHandler} />
         <h1 className={s.text}>Contacts</h1>
         <Filter filter={this.filterNamesAdd} />
-        <Contacts data={this.filterByName()} findId={this.findIdEl} />
+        <Contacts data={data} findId={this.findIdEl} />
       </div>
     );
   }
