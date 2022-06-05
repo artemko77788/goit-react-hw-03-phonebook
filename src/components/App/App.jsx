@@ -19,11 +19,23 @@ class App extends Component {
         return;
       }
     }
-
     this.setState(previousState => ({
       contacts: [...previousState.contacts, data],
     }));
   };
+
+  componentDidMount() {
+    const contacts = JSON.parse(localStorage.getItem('contacts'));
+    if (contacts) {
+      this.setState({ contacts: contacts });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.contacts !== prevState) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
 
   filterNamesAdd = data => {
     this.setState({
